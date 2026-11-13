@@ -1,0 +1,43 @@
+{% from "partials/_macros.html" import anchor with context %}
+<section class="section ads-section" id="meta-ads">
+  <div class="container">
+    <div class="ads-layout">
+      <div class="ads-copy">
+        <div class="eyebrow">(02) Paid social</div>
+        <h2>Meta ads that turn scrolls into <span class="accent">customers.</span></h2>
+        <p class="body-lg">Your audience is already scrolling. We help your brand show up with the right message, in the right moment, and give people a compelling reason to act.</p>
+        <ul class="check-list">
+          {%- for item in ads_checklist %}
+          <li>{{ item }}</li>
+          {%- endfor %}
+        </ul>
+        <a class="btn btn-primary magnetic" href="{{ anchor('contact') }}">Get a free ad audit <span class="btn-arrow">↗</span></a>
+      </div>
+      <div class="ads-visual" aria-label="Illustrative mobile social advertising feed">
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="phone-status"><span>9:41</span><span>●●●  ▰</span></div>
+            <div class="feed-head"><div class="feed-avatar"></div><div><strong>yourbrand.official</strong><small>Sponsored · Suggested for you</small></div></div>
+            <div class="feed-scroll"><div class="feed-track">
+              {#- First post is repeated at the end so the scrolling loop has no visible jump. #}
+              {%- for post in feed_posts + feed_posts[:1] %}
+              <div class="feed-post"><div class="feed-art"></div><div class="feed-post-copy"><strong>{{ post.headline }}</strong>{{ post.body }}</div><div class="feed-actions">♡ &nbsp; ◯ &nbsp; ↗</div></div>
+              {%- endfor %}
+            </div></div>
+          </div>
+        </div>
+        {%- for chip in metric_chips %}
+        <div class="metric-chip {{ chip.css }}"><small>{{ chip.label }}</small><strong>{{ chip.value }}</strong><em>{{ chip.delta }}</em></div>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="funnel">
+      <div class="funnel-label"><span class="eyebrow">(The conversion journey)</span><span class="mono muted">From first look to next move</span></div>
+      <div class="funnel-steps">
+        {%- for step in funnel %}
+        <div class="funnel-step"><small>{{ step.step }}</small><strong>{{ step.label }}</strong></div>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>

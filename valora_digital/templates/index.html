@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head_extra %}
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+{% endblock %}
+
+{% block body %}
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="cursor-dot" aria-hidden="true"></div><div class="cursor-ring" aria-hidden="true"></div>
+
+  {% include "partials/loader.html" %}
+  {% include "partials/nav.html" %}
+
+  <main>
+    {% include "partials/hero.html" %}
+    {% include "partials/services.html" %}
+    {% include "partials/ads.html" %}
+    {% include "partials/process.html" %}
+    {% include "partials/work.html" %}
+    {% include "partials/contact.html" %}
+  </main>
+
+  {% include "partials/footer.html" %}
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js" defer></script>
+  <script src="{{ static_url('js/main.js') }}" defer></script>
+{% endblock %}

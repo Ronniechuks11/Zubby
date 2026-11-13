@@ -1,0 +1,51 @@
+{% from "partials/_macros.html" import field_error with context %}
+{% set vals = form_values or {} %}
+{% set errs = form_errors or {} %}
+<section class="section contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="eyebrow">(05) Let's make a mark</div>
+      <h2 class="contact-title">Ready to be <span class="accent">remembered?</span></h2>
+      <p class="contact-copy">Tell us what you're building. We'll bring a clear perspective, thoughtful creative and a plan to help your brand move forward.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary magnetic" href="{{ social_url('whatsapp') }}" target="_blank" rel="noopener">Chat on WhatsApp <span class="btn-arrow">↗</span></a>
+        <a class="btn btn-ghost" href="mailto:{{ contact_email }}">Email Valora <span class="btn-arrow">↗</span></a>
+      </div>
+    </div>
+    <form class="contact-form" id="contactForm" method="post" action="{{ url_for('main.contact') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      {# Honeypot: hidden from people, tempting to bots. Anything typed here is discarded server-side. #}
+      <div class="hp-field" aria-hidden="true"><label for="website">Leave this field empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+      <div class="form-heading"><strong>Start a conversation.</strong><span>Share a little about your next move.</span></div>
+      <div class="field">
+        <label for="name">Your name</label>
+        <input id="name" name="name" autocomplete="name" placeholder="Name" required minlength="2" maxlength="80" value="{{ vals.get('name', '') }}" aria-describedby="name-error"{% if errs.get('name') %} aria-invalid="true"{% endif %}>
+        {{ field_error('name', errs) }}
+      </div>
+      <div class="field">
+        <label for="email">Email / WhatsApp</label>
+        <input id="email" name="contact" autocomplete="email" placeholder="How can we reach you?" required minlength="5" maxlength="120" value="{{ vals.get('contact', '') }}" aria-describedby="contact-error"{% if errs.get('contact') %} aria-invalid="true"{% endif %}>
+        {{ field_error('contact', errs) }}
+      </div>
+      <div class="field">
+        <label for="budget">Monthly campaign budget</label>
+        <select id="budget" name="budget" required aria-describedby="budget-error"{% if errs.get('budget') %} aria-invalid="true"{% endif %}>
+          <option value="" disabled{% if not vals.get('budget') %} selected{% endif %}>Select a range</option>
+          {%- for option in budget_options %}
+          <option{% if vals.get('budget') == option %} selected{% endif %}>{{ option }}</option>
+          {%- endfor %}
+        </select>
+        {{ field_error('budget', errs) }}
+      </div>
+      <div class="field">
+        <label for="message">What are you looking to achieve?</label>
+        <textarea id="message" name="message" placeholder="Tell us about your brand, goals or challenge..." required minlength="10" maxlength="2000" aria-describedby="message-error"{% if errs.get('message') %} aria-invalid="true"{% endif %}>{{ vals.get('message', '') }}</textarea>
+        {{ field_error('message', errs) }}
+      </div>
+      <button class="btn btn-primary form-submit" type="submit">Send enquiry <span class="btn-arrow">↗</span></button>
+      <p class="form-note">We only use your details to reply to your enquiry.</p>
+      <div class="form-error{% if form_status == 'error' %} show{% endif %}" id="formError" role="alert">{% if form_status == 'error' %}{{ form_message }}{% endif %}</div>
+      <div class="form-success{% if form_status == 'success' %} show{% endif %}" id="formSuccess" role="status">{% if form_status == 'success' %}{{ form_message }}{% endif %}</div>
+    </form>
+  </div>
+</section>

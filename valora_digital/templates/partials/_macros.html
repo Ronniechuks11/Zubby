@@ -1,0 +1,19 @@
+{# Shared building blocks. Import with: {% from "partials/_macros.html" import ... with context %} #}
+
+{% macro v_mark(css_class="v-mark") -%}
+<svg class="{{ css_class }}" viewBox="0 0 405 429" aria-hidden="true"><path d="{{ logo_path }}"/></svg>
+{%- endmacro %}
+
+{% macro logo_lockup(label="Valora Digital home") -%}
+<a class="logo-lockup" href="{{ url_for('main.index') }}#home" aria-label="{{ label }}">
+  {{ v_mark() }}
+  <span class="logo-word"><strong>VALORA</strong><span>Digital</span></span>
+</a>
+{%- endmacro %}
+
+{% macro anchor(name) -%}{{ url_for('main.index') }}#{{ name }}{%- endmacro %}
+
+{# One form field with its (optional) server-side error message. #}
+{% macro field_error(name, errors) -%}
+<p class="field-error" id="{{ name }}-error" role="alert"{% if not errors.get(name) %} hidden{% endif %}>{{ errors.get(name, "") }}</p>
+{%- endmacro %}

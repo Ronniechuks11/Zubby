@@ -1,0 +1,14 @@
+<section class="section process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">(03) The process</div><h2>The Remembered<br><span class="accent">Method.</span></h2></div>
+      <p class="process-intro">Good work is intentional. Our method keeps the big picture clear while making every next move count.</p>
+    </div>
+    <div class="process-wrap">
+      <div class="process-line"><span id="processProgress"></span></div>
+      {%- for step in process_steps %}
+      <article class="process-card"><span class="process-num">{{ step.number }}</span><div><h3>{{ step.title }}</h3><p>{{ step.body }}</p></div><span class="process-word">{{ step.word }}</span></article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

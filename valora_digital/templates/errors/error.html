@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% from "partials/_macros.html" import v_mark with context %}
+
+{% block title %}{{ code }} — {{ site.name }}{% endblock %}
+{% block meta %}<meta name="robots" content="noindex">{% endblock %}
+{% block body_class %}{% endblock %}
+
+{% block body %}
+<main class="error-page">
+  <div class="error-card">
+    {{ v_mark() }}
+    <p class="eyebrow">Error {{ code }}</p>
+    <h1>{{ title }}</h1>
+    <p class="body-lg">{{ description }}</p>
+    <a class="btn btn-primary" href="{{ url_for('main.index') }}">Back to Valora Digital <span class="btn-arrow">↗</span></a>
+  </div>
+</main>
+{% endblock %}

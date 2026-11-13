@@ -1,0 +1,17 @@
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div><div class="eyebrow">(01) Services</div><h2>Built to make<br>an <span class="accent">impact.</span></h2></div>
+      <p class="services-intro">Every touchpoint is an opportunity to be remembered. We bring the thinking, creative and execution together to make it count.</p>
+    </div>
+    <div class="service-grid">
+      {%- for service in services %}
+      <article class="service-card">
+        <div class="service-top"><span class="service-number">{{ service.number }} / {{ service.category }}</span><span class="service-arrow">↗</span></div>
+        <h3>{{ service.title }}</h3>
+        <p>{{ service.body }}</p>
+      </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

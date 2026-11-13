@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="{{ site.theme_color }}">
+  {% block meta %}
+  <meta name="description" content="{{ site.description }}">
+  <meta property="og:title" content="{{ site.og_title }}">
+  <meta property="og:description" content="{{ site.og_description }}">
+  <meta property="og:type" content="website">
+  {% if canonical_url %}
+  <link rel="canonical" href="{{ canonical_url }}/">
+  <meta property="og:url" content="{{ canonical_url }}/">
+  {% endif %}
+  {% endblock %}
+  {% block head_extra %}{% endblock %}
+  <title>{% block title %}{{ site.title }}{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="{{ static_url('img/favicon.svg') }}">
+  <link rel="stylesheet" href="{{ static_url('css/main.css') }}">
+  {# Without JavaScript the intro loader could never dismiss itself, so hide it. #}
+  <noscript><style>.loader{display:none!important}body.is-locked{overflow:auto!important}.grain,.cursor-dot,.cursor-ring{display:none}</style></noscript>
+</head>
+<body class="{% block body_class %}is-locked{% endblock %}">
+{% block body %}{% endblock %}
+{% block scripts %}{% endblock %}
+</body>
+</html>

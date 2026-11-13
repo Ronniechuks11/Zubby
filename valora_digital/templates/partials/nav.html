@@ -1,0 +1,19 @@
+{% from "partials/_macros.html" import logo_lockup, anchor with context %}
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    {{ logo_lockup() }}
+    <nav class="nav-links" aria-label="Main navigation">
+      {%- for link in nav_links %}
+      <a class="link-sweep" href="{{ anchor(link.anchor) }}">{{ link.label }}</a>
+      {%- endfor %}
+    </nav>
+    <a class="btn btn-primary nav-cta magnetic" href="{{ anchor('contact') }}">Start a campaign <span class="btn-arrow">↗</span></a>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+    {%- for link in nav_links %}
+    <a href="{{ anchor(link.anchor) }}">{{ link.label }}</a>
+    {%- endfor %}
+    <a class="mobile-small" href="{{ anchor('contact') }}">Start a campaign ↗</a>
+  </nav>
+</header>

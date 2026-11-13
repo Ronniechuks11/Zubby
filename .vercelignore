@@ -1,0 +1,6 @@
+tests
+instance
+.env
+*.sqlite3
+README.md
+requirements-dev.txt

@@ -1,0 +1,29 @@
+{% from "partials/_macros.html" import logo_lockup, anchor with context %}
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        {{ logo_lockup() }}
+        <p>We help brands get remembered. Strategy, creative and performance with purpose.</p>
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        {%- for link in footer_links %}
+        <a class="link-sweep" href="{{ anchor(link.anchor) }}">{{ link.label }}</a>
+        {%- endfor %}
+      </nav>
+      <div class="socials" aria-label="Social links">
+        {#- Links come from the SOCIAL_* settings; unset ones fall back to "#". #}
+        {%- for social in socials %}
+        {%- set url = social_url(social.key) %}
+        <a href="{{ url }}" aria-label="{{ social.label }}"{% if url != '#' %} target="_blank" rel="noopener noreferrer"{% endif %}><svg viewBox="0 0 24 24">{{ social.icon }}</svg></a>
+        {%- endfor %}
+      </div>
+    </div>
+    <div class="footer-wordmark" id="footerWordmark">VALORA</div>
+    <div class="footer-bottom">
+      <span>© {{ current_year }} {{ site.name }}.</span>
+      <span><strong>A subdivision of {{ site.parent }}.</strong></span>
+      <span>Built to leave an afterimage.</span>
+    </div>
+  </div>
+</footer>
